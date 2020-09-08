@@ -86,6 +86,14 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+
+  {
+    title: 'Pacman starts learning JavaScript',
+    date: '6-9-2020',
+    firstParagraph: `Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka WakaWaka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka`,
+    secondParagraph: `Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka`,
+    thirdParagraph: `Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka Waka`
   }
 ];
 
@@ -114,3 +122,47 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker(articleObj){
+  const article = document.createElement('div')
+  article.classList.add('article')
+
+  const articleH2 = document.createElement('h2')
+  articleH2.textContent = articleObj.title
+  article.append(articleH2)
+
+  const articleDate = document.createElement('p')
+  articleDate.className = 'date'
+  articleDate.textContent = articleObj.date
+  article.append(articleDate)
+
+  const firstP = document.createElement('p')
+  firstP.textContent = articleObj.firstParagraph
+  article.append(firstP)
+
+  const secondP = document.createElement('p')
+  secondP.textContent = articleObj.secondParagraph
+  article.append(secondP)
+
+  const thirdP = document.createElement('p')
+  thirdP.textContent = articleObj.thirdParagraph
+  article.append(thirdP)
+
+  const spanBtn = document.createElement('span')
+  spanBtn.className = "expandButton"
+  spanBtn.textContent = '+'
+  spanBtn.addEventListener('click', () => {
+    article.classList.toggle('article-open')
+  })
+  article.append(spanBtn)
+
+  return article
+}
+
+data.forEach(item => {
+  const articles = document.querySelector('.articles')
+  articles.append(articleMaker(item))
+})
+
+
+
